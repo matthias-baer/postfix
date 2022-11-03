@@ -8,7 +8,7 @@ email = 'matthias.baer@mpl.mpg.de'
 description = 'A Python package to facilitate writing tests for a testless code base.'
 name = 'postfix'
 year = '2022'
-url = ''
+url = 'https://github.com/matthias-baer/postfix'
 version = '0.0.1'
 
 setup(
