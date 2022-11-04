@@ -21,8 +21,9 @@ to create tests for the function `myfunc` and the method `MyClass.mymethod`
 to get realistic data for the arguments of that function/method. In order
 to quickly get a first test coverage with realistic input and output data, 
 we will use `postfix` to create test fixtures. Annotate the function or
-method for which you create a fixture with the decorator `postfix.create_fixture`
-(see `example/state2`) and run your code. Remove the decorators from the production
+method for which you create a fixture with the decorator `postfix.create_function_fixture`
+or `postfix.create_method_fixture`, respectively
+(see `example/state2`), and run your code. Remove the decorators from the production
 code, move the dumped fixture files to
 your newly created test suite directory and use them to write tests (see
 `examples/state_3`).
