@@ -9,7 +9,7 @@ description = 'A Python package to facilitate writing tests for a testless code 
 name = 'postfix'
 year = '2022'
 url = 'https://github.com/matthias-baer/postfix'
-version = '0.0.2'
+version = '0.0.3'
 
 setup(
     name=name,

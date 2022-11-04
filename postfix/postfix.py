@@ -77,11 +77,11 @@ def create_method_fixture(filename):
         def inner(*args, **kwargs):
 
             fixture = MethodFixture(filename)
-            fixture.set_arguments(args, kwargs)
 
             # "method" is a method of a class, so args[0] is an instance
             # of the class.
             obj, args = args[0], args[1:]
+            fixture.set_arguments(args, kwargs)
 
             # The workings of the method could depend on the
             # current state of the object. So we need to save it, too:
