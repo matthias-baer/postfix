@@ -6,7 +6,6 @@ from mypackage.code_to_be_tested import myfunc, MyClass
 
 
 class TestBase(unittest.TestCase):
-
     fixture_path = os.path.join(os.path.abspath(__file__), 'fixtures')
 
     def load_fixture(self, filename):
@@ -27,9 +26,11 @@ class TestMyClass(TestBase):
     def test_mymethod_invalid_args(self):
         fixture = self.load_fixture('test_mymethod_invalid_args.pck')
         a, b = fixture.args
-        obj = MyClass(42)
+        obj = fixture.pre_state
         actual = obj.mymethod(a)
         self.assertEqual(fixture.return_value, actual)
+        # Optionally: do assertions on fixture.post_state
+        ...
 
 
 if __name__ == '__main__':

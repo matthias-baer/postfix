@@ -1,5 +1,6 @@
 import os
 import pickle
+from copy import deepcopy
 
 
 class Fixture:
@@ -10,15 +11,17 @@ class Fixture:
 
     @classmethod
     def from_file(cls, filename):
+        """Loads a fixture from file."""
         with open(filename, 'rb') as file:
             return pickle.load(file)
 
 
 class FunctionFixture(Fixture):
+    """A class for dumping and loading data entering and leaving a Python function."""
 
     def __init__(self, filename, save_dir=None):
         """
-        Public constructor for Fixture objects.
+        Public constructor.
 
         Parameters
         ----------
@@ -39,13 +42,37 @@ class FunctionFixture(Fixture):
 
 
 class MethodFixture(FunctionFixture):
+    """A class for dumping and loading data used by a method.
+
+        MethodFixture objects not only store the data entering and leaving
+        the method, but also the state of the object containing the
+        method before and after execution.
+    """
+
+    def __init__(self, filename, save_dir=None):
+        super(MethodFixture, self).__init__(filename, save_dir)
+        self._pre_state = None
+        self._post_state = None
 
     def set_state_before(self, state):
-        self.pre_state = state
+        self._pre_state = state
 
     def set_state_after(self, state):
-        self.post_state = state
+        self._post_state = state
 
+    @property
+    def pre_state(self):
+        """Returns the instance before executing the method."""
+
+        # Return a *copy*, because otherwise the object may be altered when
+        # calling methods on it and one couldn't compare with the actual
+        # state before execution any more.
+        return deepcopy(self._pre_state)
+
+    @property
+    def post_state(self):
+        """Returns the instance after executing the method."""
+        return self._pre_state
 
 
 def create_function_fixture(filename):
@@ -75,7 +102,6 @@ def create_method_fixture(filename):
 
     def decorator(method):
         def inner(*args, **kwargs):
-
             fixture = MethodFixture(filename)
 
             # "method" is a method of a class, so args[0] is an instance
