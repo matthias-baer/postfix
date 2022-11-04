@@ -26,3 +26,9 @@ method for which you create a fixture with the decorator `postfix.create_fixture
 code, move the dumped fixture files to
 your newly created test suite directory and use them to write tests (see
 `examples/state_3`).
+
+### Limitations
+
+In *postfix* you cannot instrument methods or functions that are located
+in the main module. However, for any nontrivial project with more than
+one Python file this should not be a limitation.

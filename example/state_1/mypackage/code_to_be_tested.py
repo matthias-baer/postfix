@@ -16,8 +16,3 @@ def run(a, b):
     func_result = myfunc(a, b)
     obj = MyClass(42)
     return obj.mymethod(func_result)
-
-
-if __name__ == '__main__':
-    run(1, 2)
-

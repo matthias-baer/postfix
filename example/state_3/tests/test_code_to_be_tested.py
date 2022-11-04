@@ -27,5 +27,10 @@ class TestMyClass(TestBase):
     def test_mymethod_invalid_args(self):
         fixture = self.load_fixture('test_mymethod_invalid_args.pck')
         a, b = fixture.args
-        actual = myfunc(a, b)
+        obj = MyClass(42)
+        actual = obj.mymethod(a)
         self.assertEqual(fixture.return_value, actual)
+
+
+if __name__ == '__main__':
+    unittest.main()
