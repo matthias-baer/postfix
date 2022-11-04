@@ -1,4 +1,4 @@
-from postfix import create_function_fixture
+from postfix import create_function_fixture, create_method_fixture
 
 
 @create_function_fixture('test_myfunc_happy.pck')
@@ -11,7 +11,7 @@ class MyClass:
     def __init__(self, mystate):
         self.state = mystate
 
-    @create_function_fixture('test_mymethod_invalid_args.pck')
+    @create_method_fixture('test_mymethod_invalid_args.pck')
     def mymethod(self, a, *args, **kwargs):
         self.state += 1
         return a + self.state

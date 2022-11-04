@@ -7,7 +7,7 @@ from mypackage.code_to_be_tested import myfunc, MyClass
 
 class TestBase(unittest.TestCase):
 
-    fixture_path = os.path.join(os.path.curdir, 'fixtures')
+    fixture_path = os.path.join(os.path.abspath(__file__), 'fixtures')
 
     def load_fixture(self, filename):
         return Fixture.from_file(os.path.join(self.fixture_path, filename))
