@@ -1,4 +1,4 @@
-from postfix.postfix import create_function_fixture
+from postfix.postfix import create_function_fixture, create_method_fixture
 
 
 @create_function_fixture('myrecord.pck')
@@ -11,7 +11,7 @@ class MyClass:
     def __init__(self, mystate):
         self.state = mystate
 
-    @create_function_fixture('myrecord.pck')
+    @create_method_fixture('myrecord.pck')
     def mymethod(self, a, *args, **kwargs):
         return a + self.state
 
